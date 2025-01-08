@@ -73,7 +73,8 @@ return {
                         }
                     }
                 end,
-            }
+            },
+            vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, { noremap = true, silent = true })
         })
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -87,8 +88,8 @@ return {
             mapping = cmp.mapping.preset.insert({
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
-                ["<C-c>"] = cmp.mapping.complete(),
+                ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                ["<C-Space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
@@ -102,7 +103,6 @@ return {
             -- update_in_insert = true,
             float = {
                 focusable = false,
-                style = "minimal",
                 border = "rounded",
                 source = "always",
                 header = "",

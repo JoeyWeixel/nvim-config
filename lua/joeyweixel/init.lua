@@ -7,7 +7,6 @@ local augroup = vim.api.nvim_create_augroup
 local JoeyWeixelGroup = augroup('JoeyWeixel', {})
 
 local autocmd = vim.api.nvim_create_autocmd
-local yank_group = augroup('HighlightYank', {})
 
 function R(name)
     require("plenary.reload").reload_module(name)
@@ -18,18 +17,6 @@ vim.filetype.add({
         templ = 'templ',
     }
 })
-
-autocmd('TextYankPost', {
-    group = yank_group,
-    pattern = '*',
-    callback = function()
-        vim.highlight.on_yank({
-            higroup = 'IncSearch',
-            timeout = 40,
-        })
-    end,
-})
-
 
 autocmd('LspAttach', {
     group = JoeyWeixelGroup,
